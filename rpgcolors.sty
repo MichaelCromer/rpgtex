@@ -5,36 +5,33 @@
 
 \RequirePackage{xcolor}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Define colors, sampled from the books.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\definecolor {RPG_Coral}    {HTML} {F3D7C1}
+\definecolor {RPG_Cyan}     {HTML} {B5CEB8}
+\definecolor {RPG_Gold1}    {HTML} {B89A67}
+\definecolor {RPG_Gold2}    {HTML} {C9AD6A}
+\definecolor {RPG_Gold3}    {HTML} {E69A28}
+\definecolor {RPG_Green1}   {HTML} {E0E5C1}
+\definecolor {RPG_Green2}   {HTML} {E8E6DC}
+\definecolor {RPG_Grey}     {HTML} {CACCBE}
+\definecolor {RPG_Lavender} {HTML} {E3CED3}
+\definecolor {RPG_Lilac}    {HTML} {D7D4D6}
+\definecolor {RPG_Mauve}    {HTML} {DCCCC5}
+\definecolor {RPG_Red1}     {HTML} {9C2B1B}
+\definecolor {RPG_Red2}     {HTML} {58180D}
+\definecolor {RPG_Slate}    {HTML} {DBE4E4}
+\definecolor {RPG_Tan1}     {HTML} {E5D5AC}
+\definecolor {RPG_Tan2}     {HTML} {F7F2E5}
+\definecolor {RPG_Tan3}     {HTML} {F9EFD6}
+\definecolor {RPG_Tan3}     {HTML} {FDF1DC}
 
-\definecolor {RPG_Coral}    {HTML} {F3D7C1} % DMG Part 2
-\definecolor {RPG_Cyan}     {HTML} {B5CEB8} % PHB Part 2
-\definecolor {RPG_Gold1}    {HTML} {B89A67} % pagenumbers and footer
-\definecolor {RPG_Gold2}    {HTML} {C9AD6A} % titlerules
-\definecolor {RPG_Gold3}    {HTML} {E69A28} % stat block top/bottom borders (gold)
-\definecolor {RPG_Green1}   {HTML} {E0E5C1} % PHB Part 1
-\definecolor {RPG_Green2}   {HTML} {E8E6DC} % Basic Rules
-\definecolor {RPG_Grey}     {HTML} {CACCBE} % outline color in part & chapter font
-\definecolor {RPG_Lavender} {HTML} {E3CED3} % DMG Part 1
-\definecolor {RPG_Lilac}    {HTML} {D7D4D6} % DMG appendix
-\definecolor {RPG_Mauve}    {HTML} {DCCCC5} % PHB Part 3
-\definecolor {RPG_Red1}     {HTML} {9C2B1B} % triangular rule in statsblock
-\definecolor {RPG_Red2}     {HTML} {58180D} % titles
-\definecolor {RPG_Slate}    {HTML} {DBE4E4} % DMG Part 3
-\definecolor {RPG_Tan1}     {HTML} {E5D5AC} % PHB appendix
-\definecolor {RPG_Tan2}     {HTML} {F7F2E5} % background
-\definecolor {RPG_Tan3}     {HTML} {F9EFD6} % lighter version of RPG_Tan2
-\definecolor {RPG_Tan3}     {HTML} {FDF1DC} % stat block background (RPG_Tan)
+\colorlet {themecolor}     {RPG_Green2}     % Default theme
+\colorlet {commentcolor}   {themecolor}     % RPG_Comment background
+\colorlet {sidebarcolor}   {themecolor}     % RPG_Sidebar background
+\colorlet {tablecolor}     {themecolor}     % RPG_Table even row background
+\colorlet {readaloudcolor} {RPG_Tan1}       % RPG_ReadAloud background
+\colorlet {titlecolor}     {RPG_Gold2}      % default titlerule color
 
-\colorlet {themecolor}     {RPG_Green1}     % Set the default theme
-\colorlet {commentcolor}   {themecolor}     % RPGComment background
-\colorlet {sidebarcolor}   {themecolor}     % RPGSidebar background
-\colorlet {tablecolor}     {themecolor}     % RPGTable even row background
-\colorlet {readaloudcolor} {RPG_Tan1}       % RPGReadAloud background
-
-\NewDocumentCommand {\RPGSetThemeColor} { O {themecolor} }
+\NewDocumentCommand {\RPG_SetThemeColor} { O {themecolor} }
 {
     \colorlet {themecolor}   {#1}
     \colorlet {commentcolor} {#1}

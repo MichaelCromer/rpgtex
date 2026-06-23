@@ -1,0 +1,121 @@
+\ExplSyntaxOn
+
+\bool_new:N \g__rpg_layout_loaded_bool
+\bool_gset_true:N \g__rpg_layout_loaded_bool
+
+\RequirePackage{titlesec}
+\RequirePackage{xcolor}
+
+% Guard-bool-defined fallbacks when rpgfonts/rpgcolors are not loaded
+\cs_if_exist:cF { g__rpg_fonts_loaded_bool }
+{
+    \ProvideDocumentCommand{\RPG_FontPart}{}{\Huge\bfseries}
+    \ProvideDocumentCommand{\RPG_FontChapter}{}{\Huge\bfseries}
+    \ProvideDocumentCommand{\RPG_FontSection}{}{\huge\bfseries}
+    \ProvideDocumentCommand{\RPG_FontSubsection}{}{\Large\bfseries}
+    \ProvideDocumentCommand{\RPG_FontSubsubsection}{}{\large\bfseries}
+    \ProvideDocumentCommand{\RPG_FontParagraph}{}{\bfseries\slshape}
+    \ProvideDocumentCommand{\RPG_FontSubaragraph}{}{\bfseries\slshape}
+    \ProvideDocumentCommand{\RPG_Contour}{O{}m}{#2}
+}
+\cs_if_exist:cF { g__rpg_colors_loaded_bool }
+{
+    \definecolor{titlecolor}{HTML}{C9AD6A}
+}
+
+% Change part numbering to Arabic numbers from Roman numerals
+\renewcommand{\thepart}{\arabic{part}}
+
+% Set spacing around floats
+\setlength{\textfloatsep}{11pt plus 4pt minus 4pt}
+\setlength{\intextsep}{11pt plus 4pt minus 4pt}
+\setlength{\dbltextfloatsep}{11pt plus 4pt minus 4pt}
+
+% Remove Numbering (If you want Numbering set secnumdepth to the appropriate depth)
+\setcounter{secnumdepth}{0}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Section formatting
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Part
+\titleformat {\part}
+[display]
+{ \centering \RPG_FontPart } % format
+{ \RPG_Contour{\partname\ \thepart} } % label
+{ 2ex } % sep
+{ \RPG_Contour } % before-code
+
+% Chapter
+\titleformat {\chapter}
+{ \RPG_FontChapter } % format
+{ \RPG_Contour{\chaptertitlename\ \thechapter :} } % label
+{ \wordsep } % sep
+{ \RPG_Contour } % before-code
+
+\titlespacing* {\chapter}
+{ 0pt }  % left
+{ .3ex }  % before-sep
+{ 2.8ex } % after-sep
+
+% Section
+\titleformat {\section}
+{ \RPG_FontSection } % format
+{ \thesection } % label
+{ 1em } % sep
+{ \nopagebreak } % before-code
+
+\titlespacing* { \section }
+{ 0pt } % left
+{ 1.3ex plus .43ex minus .43ex } % before-sep
+{ 0pt } % after-sep
+
+% Subsection
+\titleformat {\subsection}
+{ \RPG_FontSubsection } % format
+{ \thesubsection } % label
+{ 1em } % sep
+{ \nopagebreak } % before-code
+[ \vspace{-.3ex} \titleline{ \color{titlecolor} \titlerule[1pt] } ] % after-code
+
+\titlespacing*{ \subsection }
+{ 0pt } % left
+{ 1.4ex plus .47ex minus .47ex } % before-sep
+{ 1.2ex } % after-sep
+
+% Subsubsection
+\titleformat {\subsubsection}
+{ \RPG_FontSubsubsection } % format
+{ \thesubsubsection } % label
+{ 1em } % sep
+{ \nopagebreak } % before-code
+
+\titlespacing* { \subsubsection }
+{ 0pt } % left
+{ 2ex plus .67ex minus .67ex } % before-sep
+{ .2ex } % after-sep
+
+% Paragraph
+\titleformat {\paragraph} [runin]
+{ \RPG_FontParagraph } % format
+{ \theparagraph \quad } % label
+{0pt} % sep
+{}    % before-code
+[.]   % after-code
+
+\titlespacing* {\paragraph}
+{0pt}      % left
+{\parskip} % before-sep
+{\wordsep} % after-sep
+
+% Subparagraph
+\titleformat {\subparagraph} [runin]
+{ \RPG_FontSubaragraph } % format
+{ \thesubparagraph \quad } % label
+{0pt} % sep
+{}    % before-code
+[.]   % after-code
+
+\titlespacing* {\subparagraph}
+{\parindent} % left
+{\parskip}   % before-sep
+{\wordsep}   % after-sep
