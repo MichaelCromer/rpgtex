@@ -1,0 +1,244 @@
+\ExplSyntaxOn
+
+\bool_if:NT \l__rpg_layout_bool
+{
+    % Change part numbering to Arabic numbers from Roman numerals
+    \renewcommand{\thepart}{\arabic{part}}
+
+    % Set spacing around floats
+    \setlength{\textfloatsep}{11pt plus 4pt minus 4pt}
+    \setlength{\intextsep}{11pt plus 4pt minus 4pt}
+    \setlength{\dbltextfloatsep}{11pt plus 4pt minus 4pt}
+
+    % Remove Numbering (If you want Numbering set secnumdepth to the appropriate depth)
+    \setcounter{secnumdepth}{0}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    % Section formatting
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    % Part
+    \titleformat {\part}
+    [display]
+    { \centering \RPG_FontPart } % format
+    { \RPG_Contour{\partname\ \thepart} } % label
+    { 2ex } % sep
+    { \RPG_Contour } % before-code
+
+    % Chapter
+    \titleformat {\chapter}
+    { \RPG_FontChapter } % format
+    { \RPG_Contour{\chaptertitlename\ \thechapter :} } % label
+    { \wordsep } % sep
+    { \RPG_Contour } % before-code
+
+    \titlespacing* {\chapter}
+    { 0pt }  % left
+    { .3ex }  % before-sep
+    { 2.8ex } % after-sep
+
+    % Section
+    \titleformat {\section}
+    { \RPG_FontSection } % format
+    { \thesection } % label
+    { 1em } % sep
+    { \nopagebreak } % before-code
+
+    \titlespacing* { \section }
+    { 0pt } % left
+    { 1.3ex plus .43ex minus .43ex } % before-sep
+    { 0pt } % after-sep
+
+    % Subsection
+    \titleformat {\subsection}
+    { \RPG_FontSubsection } % format
+    { \thesubsection } % label
+    { 1em } % sep
+    { \nopagebreak } % before-code
+    [ \vspace{-.3ex} \titleline{ \color{titlegold} \titlerule[1pt] } ] % after-code
+
+    \titlespacing*{ \subsection }
+    { 0pt } % left
+    { 1.4ex plus .47ex minus .47ex } % before-sep
+    { 1.2ex } % after-sep
+
+    % Subsubsection
+    \titleformat {\subsubsection}
+    { \RPG_FontSubsubsection } % format
+    { \thesubsubsection } % label
+    { 1em } % sep
+    { \nopagebreak } % before-code
+
+    \titlespacing* { \subsubsection }
+    { 0pt } % left
+    { 2ex plus .67ex minus .67ex } % before-sep
+    { .2ex } % after-sep
+
+    % Paragraph
+    \titleformat {\paragraph} [runin]
+    { \RPG_FontParagraph } % format
+    { \theparagraph \quad } % label
+    {0pt} % sep
+    {}    % before-code
+    [.]   % after-code
+
+    \titlespacing* {\paragraph}
+    {0pt}      % left
+    {\parskip} % before-sep
+    {\wordsep} % after-sep
+
+    % Subparagraph
+    \titleformat {\subparagraph} [runin]
+    { \RPG_FontSubaragraph } % format
+    { \thesubparagraph \quad } % label
+    {0pt} % sep
+    {}    % before-code
+    [.]   % after-code
+
+    \titlespacing* {\subparagraph}
+    {\parindent} % left
+    {\parskip}   % before-sep
+    {\wordsep}   % after-sep
+}
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    % Special command for magic items, traps, and the like.
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \NewDocumentCommand {\RPG_FeatHeader} { m o }
+    {
+        \subsection {#1}
+        \IfValueT{#2}
+        {
+            \textit {#2}
+            \par \vspace{3pt} \noindent \ignorespaces
+        }
+    }
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    % Special command for magic items, traps, and the like.
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \NewDocumentCommand {\RPG_ItemHeader} { m m }
+    {
+        \subsubsection {#1}
+        \textit {#2}
+        \par \vspace{3pt} \noindent \ignorespaces
+    }
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    % Special command for spells.
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    % #1 - Name
+    % #2 - Level and school
+    % #3 - Casting time
+    % #4 - Range
+    % #5 - Components
+    % #6 - Duration
+    \NewDocumentCommand {\RPG_SpellHeader} { m m m m m m }
+    {
+        \RPG_ItemHeader {#1} {#2}
+
+        \begin{description}
+                [
+                    nosep,
+                    labelsep = \l__rpg_space_dim,
+                    after    = { \vspace{4pt plus 1pt minus 1pt} },
+                ]
+            \item [ \spellcastingtimename : ] #3
+            \item [ \spellrangename       : ] #4
+            \item [ \spellcomponentsname  : ] #5
+            \item [ \spelldurationname    : ] #6
+        \end{description}
+    }
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    % Map Areas and their References
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+    \tl_new:N \l__rpg_area_num_depth_tl
+
+    % Options
+    \keys_define:nn { rpg / areas }
+    {
+        area-label .tl_set:N          = \l__rpg_area_label_tl,
+        area-label .initial:n         = area,
+        area-label .value_required:n  = true,
+        sub-area-label .tl_set:N          = \l__rpg_sub_area_label_tl,
+        sub-area-label .initial:n         = subarea,
+        sub-area-label .value_required:n  = true,
+        region .tl_set:N          = \l__rpg_region_tl,
+        region .value_required:n  = true,
+        area-num-depth .choice:,
+        area-num-depth .choices:nn =
+        { 1, 2, 3, 4 }
+        { \tl_set:Nn \l__rpg_area_num_depth_tl {#1} },
+        area-num-depth .initial:n  = 2, % subsection
+    }
+
+    \NewDocumentCommand {\RPG_SetAreaOptions} {o}
+    {
+        \keys_set:nn { rpg / areas } { #1 }
+    }
+
+    % Counters
+    \newcounter {RPG_AreaCounter}
+
+    \NewDocumentCommand {\RPG_ResetAreas} {}
+    {
+        \setcounter {RPG_AreaCounter} {0}
+    }
+
+    \newcounter {RPG_SubAreaCounter} [RPG_AreaCounter]
+
+    % sub area references should be '5a', '5b', not '51', '52'
+    \renewcommand \p@RPG_SubAreaCounter { \arabic {RPG_AreaCounter} }
+    \renewcommand \theRPG_SubAreaCounter { \alph {RPG_SubAreaCounter} }
+
+    % Functions to create an area including text and label
+    \NewDocumentCommand {\RPG_Area} {m}
+    {
+        \refstepcounter {RPG_AreaCounter}
+        \label { \l__rpg_region_tl \l__rpg_area_label_tl :#1 }
+
+        \tl_set:Nn \l_tmpa_tl { \l__rpg_region_tl \arabic {RPG_AreaCounter} . ~ #1 }
+
+        \str_case_e:nn {\l__rpg_area_num_depth_tl}
+        {
+            {1} { \section       {\l_tmpa_tl} }
+            {2} { \subsection    {\l_tmpa_tl} }
+            {3} { \subsubsection {\l_tmpa_tl} }
+            {4} { \paragraph     {\l_tmpa_tl} }
+        }
+    }
+
+    \NewDocumentCommand {\RPG_SubArea} {m}
+    {
+        \refstepcounter {RPG_SubAreaCounter}
+        \label { \l__rpg_region_tl \l__rpg_sub_area_label_tl : #1 }
+
+        \tl_set:Nn \l_tmpa_tl { \l__rpg_region_tl \arabic {RPG_AreaCounter} \alph {RPG_SubAreaCounter} . ~ #1 }
+
+        \str_case_e:nn {\l__rpg_area_num_depth_tl}
+        {
+            {1} { \subsection    {\l_tmpa_tl} }
+            {2} { \subsubsection {\l_tmpa_tl} }
+            {3} { \paragraph     {\l_tmpa_tl} }
+            {4} { \subparagraph  {\l_tmpa_tl} }
+        }
+
+    }
+
+    % Functions to reference a label
+    \NewDocumentCommand {\RPG_AreaRef} { o m }
+    {
+        \group_begin:
+        \keys_set:nn { rpg / areas } {#1} % Temp set keys to reference other regions
+        #2 ~ ( \pageabbreviationname\ \pageref { \l__rpg_region_tl \l__rpg_area_label_tl : #2 } )
+        \group_end:
+    }
+
+    \NewDocumentCommand {\RPG_SubAreaRef} { o m }
+    {
+        \group_begin:
+        \keys_set:nn { rpg / areas } { #1 } % Temp set keys to reference other regions
+        #2 ~ ( \pageabbreviationname\ \pageref { \l__rpg_region_tl \l__rpg_sub_area_label_tl : #2 } )
+        \group_end:
+    }
