@@ -9,7 +9,7 @@
 \LoadClass {book}
 
 % Base modules as a bundle
-\RequirePackage{rpgcore.def}
+\RequirePackage{rpgcore.sty}
 
 % Main modules in alphabetical order
 \RequirePackage{rpgcomment}    % inline comment boxes
