@@ -1,19 +1,26 @@
 \ExplSyntaxOn
 
+\RequirePackage[breakable,skins,xparse]{tcolorbox}
+
+% Guard-bool-defined fallbacks when rpgfonts/rpgcolors are not loaded
+\cs_if_exist:cF { g__rpg_fonts_loaded_bool }
+{
+    \ProvideDocumentCommand{\RPG_FontCommentTitle}{} {\bfseries\scshape\Large}
+    \ProvideDocumentCommand{\RPG_FontCommentBody}{} {}
+}
+\cs_if_exist:cF { g__rpg_colors_loaded_bool }
+{
+    \colorlet {commentcolor} {gray!20}
+}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Environment for comments.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Standard for every comment
 \DeclareTColorBox {__rpg_comment} {o}
-  {
-    before~upper =
-      {
-        \bool_if:NT \l__rpg_layout_bool
-          {
-            \bool_if:NF \l__rpg_justified_bool
-              { \RaggedRight }
-          }
-      },
+{
+    before~upper = { }, % TODO old code had layout-true ? => justified-false ? => \raggedright
     code         = {\linespread{.9}},
     frame~hidden,
     boxrule      = 0pt,

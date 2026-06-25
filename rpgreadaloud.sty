@@ -1,19 +1,25 @@
 \ExplSyntaxOn
 
+\RequirePackage[breakable,skins,xparse]{tcolorbox}
+
+% Guard-bool-defined fallbacks when rpgfonts/rpgcolors are not loaded
+\cs_if_exist:cF { g__rpg_fonts_loaded_bool }
+{
+    \ProvideDocumentCommand{\RPG_FontReadAloud}{} {}
+}
+\cs_if_exist:cF { g__rpg_colors_loaded_bool }
+{
+    \colorlet {readaloudcolor} {gray!20}
+    \colorlet {titlecolor} {gray}
+}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Environment for read-aloud text.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Standard for every read-aloud text
 \DeclareTColorBox {__rpg_read_aloud} {o}
   {
-    before~upper    =
-      {
-        \bool_if:NT \l__rpg_layout_bool
-          {
-            \bool_if:NF \l__rpg_justified_bool
-              {\RaggedRight}
-          }
-      },
+    before~upper = { }, % TODO old code had layout-true ? => justified-false ? => \raggedright
     code            = {\linespread {1.1} },
     enhanced~jigsaw,
     frame~hidden,
