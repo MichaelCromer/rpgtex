@@ -15,7 +15,8 @@
     \ProvideDocumentCommand{\RPG_FontSubsection}{}{\Large\bfseries}
     \ProvideDocumentCommand{\RPG_FontSubsubsection}{}{\large\bfseries}
     \ProvideDocumentCommand{\RPG_FontParagraph}{}{\bfseries\slshape}
-    \ProvideDocumentCommand{\RPG_FontSubaragraph}{}{\bfseries\slshape}
+    \ProvideDocumentCommand{\RPG_FontSubparagraph}{}{\bfseries\slshape}
+    \ProvideDocumentCommand{\RPG_FontSubparagraph}{}{\bfseries\slshape}
     \ProvideDocumentCommand{\RPG_Contour}{O{}m}{#2}
 }
 \cs_if_exist:cF { g__rpg_colors_loaded_bool }
@@ -109,7 +110,8 @@
 
 % Subparagraph
 \titleformat {\subparagraph} [runin]
-{ \RPG_FontSubaragraph } % format
+{ \RPG_FontSubparagraph } % format
+{ \RPG_FontSubparagraph } % format
 { \thesubparagraph \quad } % label
 {0pt} % sep
 {}    % before-code
