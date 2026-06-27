@@ -38,30 +38,30 @@
   \bool_if:NT \l__rpg_show_background_bool
     {
     \begin{tikzpicture}[remember~picture,overlay]
-      \node[inner~sep=0pt] at (current~page.center) {\includegraphics[width=\paperwidth,height=\paperheight]{img/paper}};
+        \node[inner~sep=0pt] at (current~page.center) {}; % {\includegraphics[width=\paperwidth,height=\paperheight]{img/paper}};
     \end{tikzpicture}
     }
 }
 
 % Left-even page footer
 \fancyfoot[LE]{%
-    \RPG_FontFooter \leftmark
+    \RPGFontFooter \leftmark
     \begin{tikzpicture}[remember~picture,overlay]
       \bool_if:NT \l__rpg_show_footer_scroll_bool {
-        \node[xscale=-1,inner~sep=0pt,anchor=south,nearly~opaque] at (current~page.south) {\includegraphics[width=\paperwidth,height=.6in]{img/footerscroll}};
+          \node[xscale=-1,inner~sep=0pt,anchor=south,nearly~opaque] at (current~page.south) {}; % {\includegraphics[width=\paperwidth,height=.6in]{img/footerscroll}};
       }
-      \node[inner~sep=0pt,anchor=south,xshift=.28in,yshift=.39in] at (current~page.south~west) {\RPG_FontPageNumber \thepage};
+      \node[inner~sep=0pt,anchor=south,xshift=.28in,yshift=.39in] at (current~page.south~west) {\RPGFontPageNumber \thepage};
     \end{tikzpicture}
   }
 
 % Right-odd page footer
 \fancyfoot[RO]{%
-    \RPG_FontFooter \leftmark
+    \RPGFontFooter \leftmark
     \begin{tikzpicture}[remember~picture,overlay]
       \bool_if:NT \l__rpg_show_footer_scroll_bool {
-        \node[inner~sep=0pt,anchor=south,nearly~opaque] at (current~page.south) {\includegraphics[width=\paperwidth,height=.6in]{img/footerscroll}};
+          \node[inner~sep=0pt,anchor=south,nearly~opaque] at (current~page.south){}; % {\includegraphics[width=\paperwidth,height=.6in]{img/footerscroll}};
       }
-      \node[inner~sep=0pt,anchor=south,xshift=-.28in,yshift=.39in] at (current~page.south~east) {\RPG_FontPageNumber \thepage};
+      \node[inner~sep=0pt,anchor=south,xshift=-.28in,yshift=.39in] at (current~page.south~east) {\RPGFontPageNumber \thepage};
     \end{tikzpicture}
   }
 

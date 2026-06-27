@@ -9,14 +9,14 @@
 % Guard-bool-defined fallbacks when rpgfonts/rpgcolors are not loaded
 \cs_if_exist:cF { g__rpg_fonts_loaded_bool }
 {
-    \ProvideDocumentCommand{\RPG_FontPart}{}{\Huge\bfseries}
-    \ProvideDocumentCommand{\RPG_FontChapter}{}{\Huge\bfseries}
-    \ProvideDocumentCommand{\RPG_FontSection}{}{\huge\bfseries}
-    \ProvideDocumentCommand{\RPG_FontSubsection}{}{\Large\bfseries}
-    \ProvideDocumentCommand{\RPG_FontSubsubsection}{}{\large\bfseries}
-    \ProvideDocumentCommand{\RPG_FontParagraph}{}{\bfseries\slshape}
-    \ProvideDocumentCommand{\RPG_FontSubparagraph}{}{\bfseries\slshape}
-    \ProvideDocumentCommand{\RPG_Contour}{O{}m}{#2}
+    \ProvideDocumentCommand{\RPGFontPart}{}{\Huge\bfseries}
+    \ProvideDocumentCommand{\RPGFontChapter}{}{\Huge\bfseries}
+    \ProvideDocumentCommand{\RPGFontSection}{}{\huge\bfseries}
+    \ProvideDocumentCommand{\RPGFontSubsection}{}{\Large\bfseries}
+    \ProvideDocumentCommand{\RPGFontSubsubsection}{}{\large\bfseries}
+    \ProvideDocumentCommand{\RPGFontParagraph}{}{\bfseries\slshape}
+    \ProvideDocumentCommand{\RPGFontSubparagraph}{}{\bfseries\slshape}
+    \ProvideDocumentCommand{\RPGContour}{O{}m}{#2}
 }
 \cs_if_exist:cF { g__rpg_colors_loaded_bool }
 {
@@ -40,17 +40,17 @@
 % Part
 \titleformat {\part}
 [display]
-{ \centering \RPG_FontPart } % format
-{ \RPG_Contour{\partname\ \thepart} } % label
+{ \centering \RPGFontPart } % format
+{ \RPGContour{\partname\ \thepart} } % label
 { 2ex } % sep
-{ \RPG_Contour } % before-code
+{ \RPGContour } % before-code
 
 % Chapter
 \titleformat {\chapter}
-{ \RPG_FontChapter } % format
-{ \RPG_Contour{\chaptertitlename\ \thechapter :} } % label
+{ \RPGFontChapter } % format
+{ \RPGContour{\chaptertitlename\ \thechapter :} } % label
 { \wordsep } % sep
-{ \RPG_Contour } % before-code
+{ \RPGContour } % before-code
 
 \titlespacing* {\chapter}
 { 0pt }  % left
@@ -59,7 +59,7 @@
 
 % Section
 \titleformat {\section}
-{ \RPG_FontSection } % format
+{ \RPGFontSection } % format
 { \thesection } % label
 { 1em } % sep
 { \nopagebreak } % before-code
@@ -71,7 +71,7 @@
 
 % Subsection
 \titleformat {\subsection}
-{ \RPG_FontSubsection } % format
+{ \RPGFontSubsection } % format
 { \thesubsection } % label
 { 1em } % sep
 { \nopagebreak } % before-code
@@ -84,7 +84,7 @@
 
 % Subsubsection
 \titleformat {\subsubsection}
-{ \RPG_FontSubsubsection } % format
+{ \RPGFontSubsubsection } % format
 { \thesubsubsection } % label
 { 1em } % sep
 { \nopagebreak } % before-code
@@ -96,7 +96,7 @@
 
 % Paragraph
 \titleformat {\paragraph} [runin]
-{ \RPG_FontParagraph } % format
+{ \RPGFontParagraph } % format
 { \theparagraph \quad } % label
 {0pt} % sep
 {}    % before-code
@@ -109,7 +109,7 @@
 
 % Subparagraph
 \titleformat {\subparagraph} [runin]
-{ \RPG_FontSubparagraph } % format
+{ \RPGFontSubparagraph } % format
 { \thesubparagraph \quad } % label
 {0pt} % sep
 {}    % before-code

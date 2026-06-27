@@ -213,7 +213,7 @@
     drop-cap-style .value_required:n = true,
     }
 
-    \NewDocumentCommand { \RPG_SetFonts } { o }
+    \NewDocumentCommand { \RPGSetFonts } { o }
     {
         \keys_set:nn { rpg / fonts } { #1 }
     }
@@ -222,89 +222,89 @@
     % Font access functions combine the selected family and style
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     % Sectioning commands
-    \NewDocumentCommand{\RPG_FontPart}{}
+    \NewDocumentCommand{\RPGFontPart}{}
     { \l__rpg_part_family_tl \l__rpg_part_style_tl}
 
-    \NewDocumentCommand{\RPG_FontChapter}{}
+    \NewDocumentCommand{\RPGFontChapter}{}
     { \l__rpg_chapter_family_tl \l__rpg_chapter_style_tl }
 
-    \NewDocumentCommand{\RPG_FontSection}{}
+    \NewDocumentCommand{\RPGFontSection}{}
     { \l__rpg_section_family_tl \l__rpg_section_style_tl }
 
-    \NewDocumentCommand{\RPG_FontSubsection}{}
+    \NewDocumentCommand{\RPGFontSubsection}{}
     { \l__rpg_subsection_family_tl \l__rpg_subsection_style_tl }
 
-    \NewDocumentCommand{\RPG_FontSubsubsection}{}
+    \NewDocumentCommand{\RPGFontSubsubsection}{}
     { \l__rpg_subsubsection_family_tl \l__rpg_subsubsection_style_tl }
 
-    \NewDocumentCommand{\RPG_FontParagraph}{}
+    \NewDocumentCommand{\RPGFontParagraph}{}
     { \l__rpg_paragraph_family_tl \l__rpg_paragraph_style_tl }
 
-    \NewDocumentCommand{\RPG_FontSubparagraph}{}
+    \NewDocumentCommand{\RPGFontSubparagraph}{}
     { \l__rpg_subparagraph_family_tl \l__rpg_subparagraph_style_tl }
 
     % Tables
-    \cs_if_exist:cTF { RPG_FontTableTitle }
-      { \RenewDocumentCommand{\RPG_FontTableTitle}{} }
-      { \NewDocumentCommand{\RPG_FontTableTitle}{} }
+    \cs_if_exist:cTF { RPGFontTableTitle }
+      { \RenewDocumentCommand{\RPGFontTableTitle}{} }
+      { \NewDocumentCommand{\RPGFontTableTitle}{} }
     { \l__rpg_table_title_family_tl \l__rpg_table_title_style_tl }
 
-    \cs_if_exist:cTF { RPG_FontTableHeader }
-      { \RenewDocumentCommand{\RPG_FontTableHeader}{} }
-      { \NewDocumentCommand{\RPG_FontTableHeader}{} }
+    \cs_if_exist:cTF { RPGFontTableHeader }
+      { \RenewDocumentCommand{\RPGFontTableHeader}{} }
+      { \NewDocumentCommand{\RPGFontTableHeader}{} }
     { \l__rpg_table_header_family_tl \l__rpg_table_header_style_tl }
 
-    \cs_if_exist:cTF { RPG_FontTableBody }
-      { \RenewDocumentCommand{\RPG_FontTableBody}{} }
-      { \NewDocumentCommand{\RPG_FontTableBody}{} }
+    \cs_if_exist:cTF { RPGFontTableBody }
+      { \RenewDocumentCommand{\RPGFontTableBody}{} }
+      { \NewDocumentCommand{\RPGFontTableBody}{} }
     { \l__rpg_table_body_family_tl \l__rpg_table_body_style_tl }
 
     % Comment boxes
-    \NewDocumentCommand{\RPG_FontCommentTitle}{}
+    \NewDocumentCommand{\RPGFontCommentTitle}{}
     { \l__rpg_comment_title_family_tl \l__rpg_comment_title_style_tl }
 
-    \NewDocumentCommand{\RPG_FontCommentBody}{}
+    \NewDocumentCommand{\RPGFontCommentBody}{}
     { \l__rpg_comment_body_family_tl \l__rpg_comment_body_style_tl }
 
     % Sidebars
-    \NewDocumentCommand{\RPG_FontSidebarTitle}{}
+    \NewDocumentCommand{\RPGFontSidebarTitle}{}
     { \l__rpg_sidebar_title_family_tl \l__rpg_sidebar_title_style_tl }
 
-    \NewDocumentCommand{\RPG_FontSidebarBody}{}
+    \NewDocumentCommand{\RPGFontSidebarBody}{}
     { \l__rpg_sidebar_body_family_tl \l__rpg_sidebar_body_style_tl }
 
     % Read-aloud boxes
-    \NewDocumentCommand{\RPG_FontReadAloud}{}
+    \NewDocumentCommand{\RPGFontReadAloud}{}
     { \l__rpg_readaloud_family_tl \l__rpg_readaloud_style_tl }
 
     % Table of Contents
-    \NewDocumentCommand{\RPG_FontTocPart}{}
+    \NewDocumentCommand{\RPGFontTocPart}{}
     { \l__rpg_toc_part_family_tl \l__rpg_toc_part_style_tl}
 
-    \NewDocumentCommand{\RPG_FontTocChapter}{}
+    \NewDocumentCommand{\RPGFontTocChapter}{}
     { \l__rpg_toc_chapter_family_tl \l__rpg_toc_chapter_style_tl}
 
-    \NewDocumentCommand{\RPG_FontTocSection}{}
+    \NewDocumentCommand{\RPGFontTocSection}{}
     { \l__rpg_toc_section_family_tl \l__rpg_toc_section_style_tl}
 
     % Stat blocks
-    \NewDocumentCommand{\RPG_FontStatBlockTitle}{}
+    \NewDocumentCommand{\RPGFontStatBlockTitle}{}
     { \l__rpg_stat_block_title_family_tl \l__rpg_stat_block_title_style_tl }
 
-    \NewDocumentCommand{\RPG_FontStatBlockBody}{}
+    \NewDocumentCommand{\RPGFontStatBlockBody}{}
     { \l__rpg_stat_block_body_family_tl \l__rpg_stat_block_body_style_tl }
 
-    \NewDocumentCommand{\RPG_FontStatBlockSection}{}
+    \NewDocumentCommand{\RPGFontStatBlockSection}{}
     { \l__rpg_stat_block_section_family_tl \l__rpg_stat_block_section_style_tl }
 
     % Miscellaneous
-    \NewDocumentCommand{\RPG_FontFooter}{}
+    \NewDocumentCommand{\RPGFontFooter}{}
     { \l__rpg_footer_family_tl \l__rpg_footer_style_tl }
 
-    \NewDocumentCommand{\RPG_FontPageNumber}{}
+    \NewDocumentCommand{\RPGFontPageNumber}{}
     { \l__rpg_page_number_family_tl \l__rpg_page_number_style_tl }
 
-    \NewDocumentCommand{\RPG_FontDropCap}{}
+    \NewDocumentCommand{\RPGFontDropCap}{}
     { \l__rpg_drop_cap_family_tl \l__rpg_drop_cap_style_tl }
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -313,11 +313,11 @@
     \renewcommand{\LettrineFontHook}
     { \l__rpg_drop_cap_family_tl \l__rpg_drop_cap_style_tl }
 
-    % Usage: RPG_DropCapLine[<lettrine options>]{<first letter>}{<small caps line>}
+    % Usage: RPGDropCapLine[<lettrine options>]{<first letter>}{<small caps line>}
     %    It takes trial and error to get the 2nd argument to align with
     %    the linebreak. Lettrine package will not play nicely with \FirstLine. See
     %    the lettrine package for options.
-    \NewDocumentCommand{\RPG_DropCapLine}{ O{} m m }
+    \NewDocumentCommand{\RPGDropCapLine}{ O{} m m }
     {
         \lettrine[
             lines   = 4,
@@ -342,7 +342,7 @@
         \group_end:
     }
 
-    \NewDocumentCommand{\RPG_Contour}{ O{contourcolor} m }
+    \NewDocumentCommand{\RPGContour}{ O{contourcolor} m }
     {
         \group_begin:
         \seq_set_split:Nnn \l_tmpa_seq { \newline } { #2 }

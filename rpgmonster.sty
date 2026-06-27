@@ -1,6 +1,6 @@
 \ExplSyntaxOn
 
-\NewDocumentCommand {\RPG_CRExp} { m }
+\NewDocumentCommand {\RPGCRExp} { m }
   {
     \str_case_e:nnF {#1}
       {
@@ -47,7 +47,7 @@
 % Monster environments
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Stat block made to look like the Monster Manual NPC definitions
-\DeclareTColorBox {RPG_MonsterNoBg} { O{} m }
+\DeclareTColorBox {RPGMonsterNoBg} { O{} m }
   {
     enhanced,
     frame~hidden,
@@ -61,16 +61,16 @@
     sharp~corners,
     opacityback = 0,
     colframe    = titlecolor,
-    fonttitle   = \RPG_FontStatBlockTitle,
-    fontupper   = \RPG_FontStatBlockBody,
-    fontlower   = \RPG_FontStatBlockBody,
+    fonttitle   = \RPGFontStatBlockTitle,
+    fontupper   = \RPGFontStatBlockBody,
+    fontlower   = \RPGFontStatBlockBody,
     title       = {#2},
     coltitle    = titlecolor,
     #1
   }
 
 % Stat block made to look like stat blocks in the PHB.
-\DeclareTColorBox {RPG_MonsterBg} { O{} m }
+\DeclareTColorBox {RPGMonsterBg} { O{} m }
   {
     enhanced,
     frame~hidden,
@@ -93,26 +93,26 @@
     colback          = statcolor,
     colbacktitle     = statcolor,
     colframe         = titlecolor,
-    fonttitle        = \RPG_FontStatBlockTitle,
+    fonttitle        = \RPGFontStatBlockTitle,
     coltitle         = titlecolor,
-    fontupper        = \RPG_FontStatBlockBody,
-    fontlower        = \RPG_FontStatBlockBody,
+    fontupper        = \RPGFontStatBlockBody,
+    fontlower        = \RPGFontStatBlockBody,
     title            = {#2},
     #1
   }
 
-% Alias RPG_Monster to correct background type
+% Alias RPGMonster to correct background type
 \bool_if:NTF \l__rpg_show_background_bool
   {
-    \let\RPG_Monster\RPG_MonsterBg
-    \let\endRPG_Monster\endRPG_MonsterBg
+    \let\RPGMonster\RPGMonsterBg
+    \let\endRPGMonster\endRPGMonsterBg
   }{
-    \let\RPG_Monster\RPG_MonsterNoBg
-    \let\endRPG_Monster\endRPG_MonsterNoBg
+    \let\RPGMonster\RPGMonsterNoBg
+    \let\endRPGMonster\endRPGMonsterNoBg
   }
 
 % Italicized text appearing immediately after monster's name
-\NewDocumentCommand {\RPG_MonsterType} {m}
+\NewDocumentCommand {\RPGMonsterType} {m}
   {
     \begin {hangingpar}
       \textit {#1}
@@ -120,7 +120,7 @@
   }
 
 % Fancy DnD 5e stat block rule
-\NewDocumentCommand {\RPG_MonsterLine} {}
+\NewDocumentCommand {\RPGMonsterLine} {}
   {
     \par \vspace{-2pt} \noindent
     \begin {tikzpicture}
@@ -134,7 +134,7 @@
 \setlist [__rpg_monster_attributes]
   {
     before   = \color {titlecolor},
-    font     = \RPG_FontStatBlockBody,
+    font     = \RPGFontStatBlockBody,
     labelsep = \l__rpg_space_dim,
     nosep,
   }
@@ -154,7 +154,7 @@
     armor-class .value_required:n  = true,
     armorclass .meta:n = { armor-class = {#1} },
     hit-points .tl_set:N         = \l__hit_points_tl,
-    hit-points .initial:n        = \RPG_Dice {1d8},
+    hit-points .initial:n        = \RPGDice {1d8},
     hit-points .value_required:n = true,
     hitpoints .meta:n = { hit-points = {#1} },
     speed .tl_set:N         = \l__speed_tl,
@@ -171,13 +171,13 @@
       \end {__rpg_monster_attributes}
   }
 
-\NewDocumentCommand {\RPG_MonsterBasics} {o}
+\NewDocumentCommand {\RPGMonsterBasics} {o}
   {
     \group_begin:
       \keys_set:nn { rpg / monster / basics } {#1}
-      \RPG_MonsterLine
+      \RPGMonsterLine
       \__rpg_monster_basics:
-      \RPG_MonsterLine
+      \RPGMonsterLine
     \group_end:
   }
 
@@ -343,13 +343,13 @@
     \end {__rpg_monster_attributes}
 }
 
-\NewDocumentCommand {\RPG_MonsterDetails} {o}
+\NewDocumentCommand {\RPGMonsterDetails} {o}
 {
   \group_begin:
     \keys_set:nn { rpg / monster / details } {#1}
-    \RPG_MonsterLine{}
+    \RPGMonsterLine{}
     \__rpg_monster_details:
-    \RPG_MonsterLine{}
+    \RPGMonsterLine{}
   \group_end:
 }
 
@@ -423,7 +423,7 @@
     \par \vspace{4pt}%
   }
 
-\NewDocumentCommand {\RPG_MonsterAbilityScores} {o}
+\NewDocumentCommand {\RPGMonsterAbilityScores} {o}
   {
     \group_begin:
       \keys_set:nn { rpg / monster / ability_scores } {#1}
@@ -432,19 +432,19 @@
   }
 
 % Inline header for monster actions - similar to a paragraph
-\NewDocumentCommand {\RPG_MonsterAction} {m}
+\NewDocumentCommand {\RPGMonsterAction} {m}
   { \par \smallskip \noindent \textsl { \textbf {#1.} } }
 
 % Inline header for monster sub actions - similar to a subparagraph
-\NewDocumentCommand {\RPG_MonsterSubAction} {m}
+\NewDocumentCommand {\RPGMonsterSubAction} {m}
   { \par \textsl { \textbf {#1.} } }
 
 % Monster subsection header style
-\NewDocumentCommand {\RPG_MonsterSection} {m}
+\NewDocumentCommand {\RPGMonsterSection} {m}
   {
     \addvspace{6pt plus 2pt minus 2pt} \noindent
     \group_begin:
-      \RPG_FontStatBlockSection #1\nopagebreak[4]
+      \RPGFontStatBlockSection #1\nopagebreak[4]
       % \rule is a horizontal command, so placing it under the title incurs extra
       % line spacing. Use \hrule (a vertical command) instead.
       \vspace {2pt}\nopagebreak[4]
@@ -455,16 +455,16 @@
   }
 
 % Spellcasting levels
-\newlist {RPG_MonsterSpells} {description} {1}
-\setlist [RPG_MonsterSpells]
+\newlist {RPGMonsterSpells} {description} {1}
+\setlist [RPGMonsterSpells]
   {
-    font     = \normalfont \RPG_FontStatBlockBody,
+    font     = \normalfont \RPGFontStatBlockBody,
     labelsep = \l__rpg_space_dim,
     noitemsep,
     topsep   = 6pt plus 2pt minus 2pt,
   }
 
-\NewDocumentCommand {\RPG_EmphSpellString} {m}
+\NewDocumentCommand {\RPGEmphSpellString} {m}
   {
     \group_begin:
       \seq_set_from_clist:Nn \l_tmpa_seq {#1}
@@ -473,7 +473,7 @@
     \group_end:
   }
 
-\NewDocumentCommand {\RPG_InnateSpellLevel} { O {\innateatwillname} m }
+\NewDocumentCommand {\RPGInnateSpellLevel} { O {\innateatwillname} m }
   {
     \item
       [
@@ -486,10 +486,10 @@
         {#1}
         :
       ]
-      \RPG_EmphSpellString {#2}
+      \RPGEmphSpellString {#2}
   }
 
-\NewDocumentCommand {\RPG_MonsterSpellLevel} { O{\spellcantripsname} O{\spellatwillname} m }
+\NewDocumentCommand {\RPGMonsterSpellLevel} { O{\spellcantripsname} O{\spellatwillname} m }
   {
     \item
       [
@@ -517,7 +517,7 @@
           {#2}
         ) :
       ]
-    \RPG_EmphSpellString{#3}
+    \RPGEmphSpellString{#3}
   }
 
 %% Monster attacks
@@ -593,10 +593,10 @@
 
 \cs_new_protected:Npn \__rpg_monster_attack:
   {
-    \__rpg_check_for_key:Nnn \l__name_tl {\RPG_MonsterAttack} {name}
-    \__rpg_check_for_key:Nnn \l__mod_tl {\RPG_MonsterAttack} {mod}
+    \__rpg_check_for_key:Nnn \l__name_tl {\RPGMonsterAttack} {name}
+    \__rpg_check_for_key:Nnn \l__mod_tl {\RPGMonsterAttack} {mod}
 
-    \begin{RPG_MonsterAction} {\l__name_tl}~
+    \begin{RPGMonsterAction} {\l__name_tl}~
 
       \str_case_e:nnF {\l__rpg_attack_distance_tl}
         {
@@ -625,10 +625,10 @@
       % `extra' is any special text that goes after the final damage; do not
       % include the final full stop.
       \l__extra_tl .
-    \end{RPG_MonsterAction}
+    \end{RPGMonsterAction}
   }
 
-\NewDocumentCommand {\RPG_MonsterAttack} {o}
+\NewDocumentCommand {\RPGMonsterAttack} {o}
   {
     \group_begin:
       \keys_set:nn { rpg / monster / attack } {#1}
@@ -636,7 +636,7 @@
     \group_end:
   }
 
-\NewDocumentCommand {\RPG_MonsterMelee} {o}
+\NewDocumentCommand {\RPGMonsterMelee} {o}
   {
     \group_begin:
       \keys_set:nn { rpg / monster / attack } { #1, distance = melee }
@@ -644,7 +644,7 @@
     \group_end:
   }
 
-\NewDocumentCommand {\RPG_MonsterRanged} {o}
+\NewDocumentCommand {\RPGMonsterRanged} {o}
   {
     \group_begin:
       \keys_set:nn { rpg / monster / attack } { #1, distance = ranged }
@@ -654,16 +654,16 @@
 
 %% Legendary Actions
 
-\newlist {RPG_MonsterLegendaryActions} {description} {1}
-\setlist [RPG_MonsterLegendaryActions]
+\newlist {RPGMonsterLegendaryActions} {description} {1}
+\setlist [RPGMonsterLegendaryActions]
   {
-    font     = \RPG_FontStatBlockBody,
+    font     = \RPGFontStatBlockBody,
     labelsep = \l__rpg_space_dim,
     noitemsep,
     topsep   = 6pt plus 2pt minus 2pt,
   }
 
-\NewDocumentCommand {\RPG_MonsterLegendaryAction} { m m }
+\NewDocumentCommand {\RPGMonsterLegendaryAction} { m m }
   {
     \item [ #1 . ] #2
   }

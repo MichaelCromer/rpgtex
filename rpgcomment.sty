@@ -5,8 +5,8 @@
 % Guard-bool-defined fallbacks when rpgfonts/rpgcolors are not loaded
 \cs_if_exist:cF { g__rpg_fonts_loaded_bool }
 {
-    \ProvideDocumentCommand{\RPG_FontCommentTitle}{} {\bfseries\scshape\Large}
-    \ProvideDocumentCommand{\RPG_FontCommentBody}{} {}
+    \ProvideDocumentCommand{\RPGFontCommentTitle}{} {\bfseries\scshape\Large}
+    \ProvideDocumentCommand{\RPGFontCommentBody}{} {}
 }
 \cs_if_exist:cF { g__rpg_colors_loaded_bool }
 {
@@ -34,9 +34,9 @@
     top          = 0pt,
     bottom       = 2pt,
     sharp~corners,
-    fonttitle    = \RPG_FontCommentTitle,
-    fontupper    = \RPG_FontCommentBody,
-    fontlower    = \RPG_FontCommentBody,
+    fonttitle    = \RPGFontCommentTitle,
+    fontupper    = \RPGFontCommentBody,
+    fontlower    = \RPGFontCommentBody,
     parbox       = false,
     coltitle     = black,
     after~skip   = 13pt plus 4pt minus 4pt,
@@ -51,6 +51,8 @@
     color .value_required:n = true,
   }
 
+\ProcessKeysOptions { rpg / comment }
+
 % This function, through its variant, forces the expansion of the tcb keys
 % passed to the environment by the user before it invokes the tcolorbox
 \cs_new_protected:Nn \__rpg_start_comment:nn
@@ -60,10 +62,10 @@
 
 \cs_generate_variant:Nn \__rpg_start_comment:nn { nV }
 
-% The RPG_Comment environment
+% The RPGComment environment
 % #1 - keys. We handle the custom color key before passing other keys on
 % #2 - title.
-\NewDocumentEnvironment {RPG_Comment} { o m }
+\NewDocumentEnvironment {RPGComment} { o m }
   {
     \group_begin:
     \keys_set_known:nnN { rpg / comment } {#1} \l_tmpa_tl

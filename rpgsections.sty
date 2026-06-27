@@ -3,7 +3,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Special command for magic items, traps, and the like.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\NewDocumentCommand {\RPG_FeatHeader} { m o }
+\NewDocumentCommand {\RPGFeatHeader} { m o }
     {
         \subsection {#1}
         \IfValueT{#2}
@@ -16,7 +16,7 @@
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     % Special command for magic items, traps, and the like.
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    \NewDocumentCommand {\RPG_ItemHeader} { m m }
+    \NewDocumentCommand {\RPGItemHeader} { m m }
     {
         \subsubsection {#1}
         \textit {#2}
@@ -32,9 +32,9 @@
     % #4 - Range
     % #5 - Components
     % #6 - Duration
-    \NewDocumentCommand {\RPG_SpellHeader} { m m m m m m }
+    \NewDocumentCommand {\RPGSpellHeader} { m m m m m m }
     {
-        \RPG_ItemHeader {#1} {#2}
+        \RPGItemHeader {#1} {#2}
 
         \begin{description}
                 [
@@ -73,32 +73,32 @@
         area-num-depth .initial:n  = 2, % subsection
     }
 
-    \NewDocumentCommand {\RPG_SetAreaOptions} {o}
+    \NewDocumentCommand {\RPGSetAreaOptions} {o}
     {
         \keys_set:nn { rpg / areas } { #1 }
     }
 
     % Counters
-    \newcounter {RPG_AreaCounter}
+    \newcounter {RPGAreaCounter}
 
-    \NewDocumentCommand {\RPG_ResetAreas} {}
+    \NewDocumentCommand {\RPGResetAreas} {}
     {
-        \setcounter {RPG_AreaCounter} {0}
+        \setcounter {RPGAreaCounter} {0}
     }
 
-    \newcounter {RPG_SubAreaCounter} [RPG_AreaCounter]
+    \newcounter {RPGSubAreaCounter} [RPGAreaCounter]
 
     % sub area references should be '5a', '5b', not '51', '52'
-    \renewcommand \p@RPG_SubAreaCounter { \arabic {RPG_AreaCounter} }
-    \renewcommand \theRPG_SubAreaCounter { \alph {RPG_SubAreaCounter} }
+    \renewcommand \p@RPGSubAreaCounter { \arabic {RPGAreaCounter} }
+    \renewcommand \theRPGSubAreaCounter { \alph {RPGSubAreaCounter} }
 
     % Functions to create an area including text and label
-    \NewDocumentCommand {\RPG_Area} {m}
+    \NewDocumentCommand {\RPGArea} {m}
     {
-        \refstepcounter {RPG_AreaCounter}
+        \refstepcounter {RPGAreaCounter}
         \label { \l__rpg_region_tl \l__rpg_area_label_tl :#1 }
 
-        \tl_set:Nn \l_tmpa_tl { \l__rpg_region_tl \arabic {RPG_AreaCounter} . ~ #1 }
+        \tl_set:Nn \l_tmpa_tl { \l__rpg_region_tl \arabic {RPGAreaCounter} . ~ #1 }
 
         \str_case_e:nn {\l__rpg_area_num_depth_tl}
         {
@@ -109,12 +109,12 @@
         }
     }
 
-    \NewDocumentCommand {\RPG_SubArea} {m}
+    \NewDocumentCommand {\RPGSubArea} {m}
     {
-        \refstepcounter {RPG_SubAreaCounter}
+        \refstepcounter {RPGSubAreaCounter}
         \label { \l__rpg_region_tl \l__rpg_sub_area_label_tl : #1 }
 
-        \tl_set:Nn \l_tmpa_tl { \l__rpg_region_tl \arabic {RPG_AreaCounter} \alph {RPG_SubAreaCounter} . ~ #1 }
+        \tl_set:Nn \l_tmpa_tl { \l__rpg_region_tl \arabic {RPGAreaCounter} \alph {RPGSubAreaCounter} . ~ #1 }
 
         \str_case_e:nn {\l__rpg_area_num_depth_tl}
         {
@@ -127,7 +127,7 @@
     }
 
     % Functions to reference a label
-    \NewDocumentCommand {\RPG_AreaRef} { o m }
+    \NewDocumentCommand {\RPGAreaRef} { o m }
     {
         \group_begin:
         \keys_set:nn { rpg / areas } {#1} % Temp set keys to reference other regions
@@ -135,7 +135,7 @@
         \group_end:
     }
 
-    \NewDocumentCommand {\RPG_SubAreaRef} { o m }
+    \NewDocumentCommand {\RPGSubAreaRef} { o m }
     {
         \group_begin:
         \keys_set:nn { rpg / areas } { #1 } % Temp set keys to reference other regions

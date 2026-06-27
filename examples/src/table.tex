@@ -1,14 +1,25 @@
 \documentclass{book}
 
-\usepackage{rpgtable}
+\usepackage{rpgcolors}
+\usepackage[color=RPGCoral]{rpgtable}
 
 \begin{document}
 
-\begin{RPG_Table}{XX}
+\begin{RPGTable}{XX}
     Header One  & Header Two \\
     Entry One   & Entry Two \\
     Entry Three & Entry Four \\
     Entry Five  & Entry Six \\
-\end{RPG_Table}
+    Entry Seven & Entry Eight \\
+\end{RPGTable}
+
+\begin{RPGTable}[color=green!20]{XX}
+    Header One  & Header Two \\
+    Entry One   & Entry Two \\
+    Entry Three & Entry Four \\
+    Entry Five  & Entry Six \\
+    Entry Seven & Entry Eight \\
+\end{RPGTable}
+
 
 \end{document}

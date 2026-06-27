@@ -5,38 +5,38 @@
 
 \RequirePackage{xcolor}
 
-\definecolor {RPG_Coral}    {HTML} {F3D7C1}
-\definecolor {RPG_Cyan}     {HTML} {B5CEB8}
-\definecolor {RPG_Gold1}    {HTML} {B89A67}
-\definecolor {RPG_Gold2}    {HTML} {C9AD6A}
-\definecolor {RPG_Gold3}    {HTML} {E69A28}
-\definecolor {RPG_Green1}   {HTML} {E0E5C1}
-\definecolor {RPG_Green2}   {HTML} {E8E6DC}
-\definecolor {RPG_Grey}     {HTML} {CACCBE}
-\definecolor {RPG_Lavender} {HTML} {E3CED3}
-\definecolor {RPG_Lilac}    {HTML} {D7D4D6}
-\definecolor {RPG_Mauve}    {HTML} {DCCCC5}
-\definecolor {RPG_Red1}     {HTML} {9C2B1B}
-\definecolor {RPG_Red2}     {HTML} {58180D}
-\definecolor {RPG_Slate}    {HTML} {DBE4E4}
-\definecolor {RPG_Tan1}     {HTML} {E5D5AC}
-\definecolor {RPG_Tan2}     {HTML} {F7F2E5}
-\definecolor {RPG_Tan3}     {HTML} {F9EFD6}
-\definecolor {RPG_Tan4}     {HTML} {FDF1DC}
+\definecolor {RPGCoral}    {HTML} {F3D7C1}
+\definecolor {RPGCyan}     {HTML} {B5CEB8}
+\definecolor {RPGGold1}    {HTML} {B89A67}
+\definecolor {RPGGold2}    {HTML} {C9AD6A}
+\definecolor {RPGGold3}    {HTML} {E69A28}
+\definecolor {RPGGreen1}   {HTML} {E0E5C1}
+\definecolor {RPGGreen2}   {HTML} {E8E6DC}
+\definecolor {RPGGrey}     {HTML} {CACCBE}
+\definecolor {RPGLavender} {HTML} {E3CED3}
+\definecolor {RPGLilac}    {HTML} {D7D4D6}
+\definecolor {RPGMauve}    {HTML} {DCCCC5}
+\definecolor {RPGRed1}     {HTML} {9C2B1B}
+\definecolor {RPGRed2}     {HTML} {58180D}
+\definecolor {RPGSlate}    {HTML} {DBE4E4}
+\definecolor {RPGTan1}     {HTML} {E5D5AC}
+\definecolor {RPGTan2}     {HTML} {F7F2E5}
+\definecolor {RPGTan3}     {HTML} {F9EFD6}
+\definecolor {RPGTan4}     {HTML} {FDF1DC}
 
-\colorlet {themecolor}      {RPG_Green2}     % Default theme
-\colorlet {commentcolor}    {themecolor}     % RPG_Comment background
-\colorlet {sidebarcolor}    {themecolor}     % RPG_Sidebar background
-\colorlet {tablecolor}      {themecolor}     % RPG_Table even row background
-\colorlet {readaloudcolor}  {RPG_Tan1}       % RPG_ReadAloud background
-\colorlet {titlecolor}      {RPG_Red1}       % default titlerule color
-\colorlet {rulecolor}       {RPG_Gold1}
-\colorlet {statcolor}       {RPG_Tan4}
-\colorlet {ribboncolor}     {RPG_Gold3}
-\colorlet {contourcolor}    {RPG_Grey}
-\colorlet {footercolor}     {RPG_Gold1}
+\colorlet {themecolor}      {RPGGreen2}     % Default theme
+\colorlet {commentcolor}    {themecolor}     % RPGComment background
+\colorlet {sidebarcolor}    {themecolor}     % RPGSidebar background
+\colorlet {tablecolor}      {themecolor}     % RPGTable even row background
+\colorlet {readaloudcolor}  {RPGTan1}       % RPGReadAloud background
+\colorlet {titlecolor}      {RPGRed1}       % default titlerule color
+\colorlet {rulecolor}       {RPGGold1}
+\colorlet {statcolor}       {RPGTan4}
+\colorlet {ribboncolor}     {RPGGold3}
+\colorlet {contourcolor}    {RPGGrey}
+\colorlet {footercolor}     {RPGGold1}
 
-\NewDocumentCommand {\RPG_SetThemeColor} { O {themecolor} }
+\NewDocumentCommand {\RPGSetThemeColor} { O {themecolor} }
 {
     \colorlet {themecolor}   {#1}
     \colorlet {commentcolor} {#1}

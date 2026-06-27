@@ -6,8 +6,8 @@
 % Guard-bool-defined fallbacks when rpgfonts/rpgcolors are not loaded
 \cs_if_exist:cF { g__rpg_fonts_loaded_bool }
 {
-    \ProvideDocumentCommand{\RPG_FontSidebarTitle}{} {\bfseries\scshape\Large}
-    \ProvideDocumentCommand{\RPG_FontSidebarBody}{} {}
+    \ProvideDocumentCommand{\RPGFontSidebarTitle}{} {\bfseries\scshape\Large}
+    \ProvideDocumentCommand{\RPGFontSidebarBody}{} {}
 }
 \cs_if_exist:cF { g__rpg_colors_loaded_bool }
 {
@@ -32,9 +32,9 @@
     right            = 6pt,
     top              = 0pt,
     bottom           = 2pt,
-    fonttitle        = \RPG_FontSidebarTitle,
-    fontupper        = \RPG_FontSidebarBody,
-    fontlower        = \RPG_FontSidebarBody,
+    fonttitle        = \RPGFontSidebarTitle,
+    fontupper        = \RPGFontSidebarBody,
+    fontlower        = \RPGFontSidebarBody,
     sharp~corners,
     parbox           = false,
     borderline~north = {1pt} {-0.5pt} {black},
@@ -60,6 +60,8 @@
     color .value_required:n = true,
   }
 
+\ProcessKeysOptions { rpg / sidebar }
+
 % This function, through its variant, forces the expansion of the tcb keys
 % passed to the environment by the user before it invokes the tcolorbox
 \cs_new_protected:Nn \__rpg_start_sidebar:nn
@@ -69,10 +71,10 @@
 
 \cs_generate_variant:Nn \__rpg_start_sidebar:nn { nV }
 
-% The RPG_Sidebar environment
+% The RPGSidebar environment
 % #1 - keys. We handle the custom color key before passing other keys on
 % #2 - title.
-\NewDocumentEnvironment {RPG_Sidebar} { o m }
+\NewDocumentEnvironment {RPGSidebar} { o m }
   {
     \group_begin:
     \keys_set_known:nnN { rpg / sidebar } {#1} \l_tmpa_tl

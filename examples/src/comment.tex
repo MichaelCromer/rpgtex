@@ -2,12 +2,17 @@
 
 \usepackage{lipsum}
 
-\usepackage{rpgcomment}
+\usepackage{rpgcolors}
+\usepackage[color=RPGGreen1]{rpgcomment}
 
 \begin{document}
 
-\begin{RPG_Comment}{Lorem Ipsum}
+\begin{RPGComment}{Lorem Ipsum}
     \lipsum[1]
-\end{RPG_Comment}
+\end{RPGComment}
+
+\begin{RPGComment}[color=blue!25]{Lorem Ipsum}
+    \lipsum[2]
+\end{RPGComment}
 
 \end{document}

@@ -15,9 +15,9 @@
 \tl_new:N \l__dice_mod_sign_tl
 \tl_new:N \l__dice_mod_tl
 
-\msg_new:nnn { rpg } { dice / invalid_argument } { Invalid~argument~``#1''~passed~to~\noexpand\RPG_Dice. }
+\msg_new:nnn { rpg } { dice / invalid_argument } { Invalid~argument~``#1''~passed~to~\noexpand\RPGDice. }
 
-\NewDocumentCommand { \RPG_Dice } { m }
+\NewDocumentCommand { \RPGDice } { m }
   {
     \group_begin:
       \regex_extract_once:NnNTF { \c__valid_dice_regex } { #1 } \l__dice_args_seq
