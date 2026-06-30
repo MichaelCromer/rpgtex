@@ -6,17 +6,6 @@
 
 \input{rpgoptions.clo}
 
-\LoadClass {book}
+\LoadClass{book}
 
-% Base modules as a bundle
-\RequirePackage{rpgcore}
-
-% Main modules in alphabetical order
-\RequirePackage{rpgcomment}    % inline comment boxes
-\RequirePackage{rpgheader}     % fancy headers and footers
-\RequirePackage{rpgmonster}    % stat blocks
-\RequirePackage{rpgreadaloud}  % read-aloud text
-\RequirePackage{rpgsections}   % section styling and special section headers
-\RequirePackage{rpgsidebar}    % sidebars
-\RequirePackage{rpgtable}      % tables
-\RequirePackage{rpgtoc}        % table of contents styling
+\RequirePackage{rpg}
